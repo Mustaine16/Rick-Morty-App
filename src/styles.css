@@ -2,6 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: white;
+  text-decoration: none;
+  list-style: none;
+}
+
+:root{
+  --card-principal: #29a19c
 }
 
 body {
@@ -14,10 +21,32 @@ body {
 }
 
 main{
-  background-color:#24325FFF
+  background-color:#393e46;
+  padding: 1em;
+  min-height: 100vh;
 }
 
-ul{
+.home{
+  display: flex;
+}
+
+.homeList {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.homeList__link{
+  padding: 3em;
+  border-radius: 10px;
+  border:2px solid var(--card-principal);
+  background:#222831;
+  overflow: hidden;
+  transition: box-shadow .2s, transform .1s;
+}
+
+.cardList{
   display: grid;
   grid-template-columns: repeat(2,1fr);
   gap: 1em;
@@ -27,21 +56,85 @@ ul{
 
 }
 
+.cardList__item{
+  height: 100%;
+}
 
-a{
+.cardList__item--link{
   display: block;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: .5rem;
+  height: 100%;
   border-radius: 10px;
-  background:white;
+  border:2px solid var(--card-principal);
+  background:#222831;
+  overflow: hidden;
   transition: box-shadow .2s, transform .1s;
 }
 
-a:hover{
+.cardList__item--link:hover{
   transform: scale(1.01);
   box-shadow: 10px 10px 10px 1px black;
+}
+
+.cardList__item--link:focus{
+  box-shadow: 0 0 15px 10px #a3f7bf;
+  transform: scale(0.9);             ;
+}
+
+.cardList__item--title{
+  width: 100%;
+  background: var(--card-principal);
+  border-radius: 0 0 5px 5px;
+  padding: .2rem;
+}
+
+.cardList__item--img{
+  width: 100%;
+  padding: .5rem;
+  border-radius: 50%;
+}
+
+button {
+  display: block;
+  margin: 1em auto;
+  padding: 1em;
+  outline: none;
+  border: 1px solid white;
+  border-radius: .2rem;
+  color: black;
+  background: #e7c435;
+  transition: all .2s;
+}
+
+button:hover , button:focus{
+  cursor: pointer;
+  transform: scale(1.2);
+  box-shadow: 10px 10px 10px 1px black;
+}
+
+button:focus{
+  box-shadow: 0 0 15px 10px #a3f7bf;
+}
+
+
+@media screen and (min-width:768px){
+  .cardList{
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+
+@media screen and (min-width:1024px){
+  .cardList{
+    grid-template-columns: repeat(4,1fr);
+  }
+}
+
+@media screen and (min-width:1440px){
+  .cardList{
+    grid-template-columns: repeat(5,1fr);
+  }
 }
