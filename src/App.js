@@ -3,17 +3,15 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Home from "./pages/Home"
 import CharactersList from "./pages/CharactersList"
+import Character from "./pages/Character"
+
 import EpisodesList from "./pages/EpisodesList"
 import LocationsList from "./pages/LocationsList"
+
 
 import "./styles.css"
 
 
-const Os = () => {
-  return (<main className="home">
-  <p>oaaa</p>
-  </main>)
-}
 function App() {
   return (
     <BrowserRouter>
@@ -25,7 +23,7 @@ function App() {
           <CharactersList />
         </Route>
         <Route exact path="/character/:id">
-          <Os/>
+          <Character />
         </Route>
         <Route exact path="/episodes">
           <EpisodesList />

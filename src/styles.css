@@ -72,17 +72,16 @@ main{
   border:2px solid var(--card-principal);
   background:#222831;
   overflow: hidden;
-  transition: box-shadow .2s, transform .1s;
+  transition: all .1s;
 }
 
 .cardList__item--link:hover{
-  transform: scale(1.01);
+  transform: scale(1.05);
   box-shadow: 10px 10px 10px 1px black;
 }
 
 .cardList__item--link:focus{
-  box-shadow: 0 0 15px 10px #a3f7bf;
-  transform: scale(0.9);             ;
+  box-shadow: 0 0 15px 10px #a3f7bf;          ;
 }
 
 .cardList__item--title{
