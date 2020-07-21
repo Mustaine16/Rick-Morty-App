@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react';
 
 import useFetchAPI from "../hooks/useFetchAPI"
+import usePortal from "../hooks/usePortal"
 
+import Loader from "./Loader"
 import CardLink from "./CardLink"
 import CharacterPortal from "../components/CharacterPortal"
-import usePortal from "../hooks/usePortal"
 
 const CardList = ({ name, type, url }) => {
 
-  const { state, handleFetchButton } = useFetchAPI(url);
-  const {modalIsOpen, setModalIsOpen, handleOpenModal} = usePortal()
-  
-  useEffect(()=>{console.log(modalIsOpen);},[modalIsOpen])
+  const { state, handleFetchButton } = useFetchAPI(url, "API");
+  const { data, loading, modalIsOpen, handleOpenModal, handleCloseModal, } = usePortal()
 
-  if (!state.results) return "LOADING"
+  useEffect(() => () => handleCloseModal(), [])//Close modal when component unmount
+
+  if (!state.results) return <main><Loader /></main>
 
   return (
     <main >
@@ -35,11 +36,11 @@ const CardList = ({ name, type, url }) => {
       </ul>
 
       {/* Modal */}
-      {modalIsOpen && <CharacterPortal />}
+      {modalIsOpen && <CharacterPortal character={data} loading={loading} handleCloseModal={handleCloseModal} />}
 
       {/* Load Button */}
       {state?.info?.next && <button onClick={handleFetchButton}>Load More...</button>}
-      
+
     </main>
   )
 

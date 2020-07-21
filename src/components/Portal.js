@@ -1,10 +1,12 @@
-import React from 'react';
 import ReactDOM from "react-dom"
 
-const Portal = ({children}) => {
+const Portal = (props) => {
+
+  // useEffect(()=>{document.body.style.overflow= "hidden"},[])
+
   return (
     ReactDOM.createPortal(
-      {children},
+      props.children,
       document.getElementById("portal")
     )
   )

@@ -13,13 +13,14 @@ import "./styles.css"
 
 
 function App() {
+  console.log(process.env.PUBLIC_URL);
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/characters">
+        <Route exact path={process.env.PUBLIC_URL +"/characters"}>
           <CharactersList />
         </Route>
         <Route exact path="/character/:id">
