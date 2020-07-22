@@ -10,32 +10,39 @@ const CharacterPortal = ({ character, loading, handleCloseModal }) => {
 
 
   useEffect(() => {
-    console.log("PORTALLLL");
-    console.log(portalRef.current);
+
+    document.addEventListener("keydown", handleCloseModal)
+
     //Hide scrollBar
     portalRef.current.classList.add("portal__open")
     closePortalButton.current.focus();
-    setTimeout(() => {
+    const overflowTimeOut = setTimeout(() => {
       document.body.style.overflow = "hidden"
     }, 350);
+
+    //Clear timeOut and remove the Escape listener
+    return () => {
+      clearTimeout(overflowTimeOut)
+      document.removeEventListener("keydown", handleCloseModal)
+    }
   }, [])
 
   // LOADER
   if (loading) return (
     <Portal>
-      <div className="portal" ref={portalRef} onKeyUp={(e) => handleCloseModal(e)}>
+      <div className="portal" ref={portalRef}>
         <Loader />
       </div>
     </Portal>
   )
 
   const { id, type, name, species, location, image, status } = character
-  
+
 
   // PORTAL
   return (
     <Portal>
-      <div className="portal" ref={portalRef} onKeyUp={(e) => handleCloseModal(e)}>
+      <div className="portal" ref={portalRef}>
         <section className="portal__info">
           <h2 className="portal__title">
             {name}

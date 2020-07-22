@@ -13,16 +13,18 @@ const usePortal = () => {
   //Fetch API when modal is open
   useEffect(() => {
     if (modalIsOpen) {
+
       const {type, id} = itemData
       const API_URL = `https://rickandmortyapi.com/api/${type}/${id}`
       setITEM_URL(API_URL)
+
     }
   }, [modalIsOpen])
 
   const handleOpenModal = ({ e = null, id = null, type = null }) => {
-
+    
     //Handle the Enter Key
-    if (e && typeof e !== Number && e.keyCode !== 13) return null
+    if (e && e.keyCode !== 13) return null
 
     setitemDataState({ id, type })
     setModalIsOpen(true)
@@ -30,8 +32,7 @@ const usePortal = () => {
   }
 
   const handleCloseModal = (e = null) => {
-
-    //Handle the Enter Key
+    //Handle Escape Key
     console.log("KeyCode: ", e && e.keyCode);
     if (e && e.keyCode !== 27) return null
     setModalIsOpen(false)
